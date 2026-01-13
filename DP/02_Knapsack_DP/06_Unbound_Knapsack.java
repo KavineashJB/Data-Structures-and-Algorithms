@@ -56,7 +56,7 @@
 // Time Limit: 1 sec
 
 import java.util.Arrays;
-public class Solution {
+class Solution {
 
     // Time Complexity - O(2^n)
     // Space Complexity - O(n) -> stack for recursion
