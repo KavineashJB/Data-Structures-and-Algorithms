@@ -28,6 +28,9 @@
 
 // import java.util.Arrays;
 // class Solution {
+
+//     Time Complexity - O(2^n)
+//     Space Complexity - O(n) -> stack for recursion
 //     public int rec(int i, int j, int m, int n) {
 //         if(j==n-1) return 1;
 //         if(i==m-1) return 1;
@@ -36,6 +39,8 @@
 //         return moveRight + moveDown;
 //     }
 
+//     Time Complexity - O(n)
+//     Space Complexity - O(n) -> stack for recursion, O(n) -> dp
 //     public int mem(int i, int j, int m, int n, int[][] dp) {
 //         if(j==n-1) return 1;
 //         if(i==m-1) return 1;
@@ -45,7 +50,8 @@
 //         return dp[i][j]=moveRight + moveDown;
 //     }
 
-
+//     Time Complexity - O(n)
+//     Space Complexity - O(n) -> dp
 //     public int uniquePaths(int m, int n) {
 //         // m -> no.of rows, n -> no.of cols
 //         int[][] dp = new int[m][n];
@@ -64,6 +70,9 @@
 
 import java.util.Arrays;
 class Solution {
+
+    // Time Complexity - O(2^n)
+    // Space Complexity - O(n) -> stack for recursion
     public int rec(int i, int j) {
         if(i==0) return 1;
         if(j==0) return 1;
@@ -72,6 +81,8 @@ class Solution {
         return moveLeft + moveTop;
     }
 
+    // Time Complexity - O(n)
+    // Space Complexity - O(n) -> stack for recursion, O(n) -> dp
     public int mem(int i, int j, int[][] dp) {
         if(i==0) return 1;
         if(j==0) return 1;
@@ -81,6 +92,8 @@ class Solution {
         return dp[i][j]=moveLeft + moveTop;
     }
 
+    // Time Complexity - O(n)
+    // Space Complexity - O(n) -> dp
     public int tab(int i, int j, int[][] dp) {
         // (i==0)
         for(int x=0; x<=j; x++) dp[0][x] = 1;
