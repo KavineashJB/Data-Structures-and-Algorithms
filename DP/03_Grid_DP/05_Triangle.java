@@ -54,6 +54,8 @@ class Solution {
         return dp[i][j] = tri.get(i).get(j) + Math.min(down, diag);
     }
 
+    // Time Complexity - O(n)
+    // Space Complexity - O(n) -> dp
     public int tab(int i, int j, int n, List<List<Integer>> tri, int[][] dp) {
         for(int y=0; y<tri.get(n).size(); y++) {
             dp[n][y] = tri.get(n).get(y);
