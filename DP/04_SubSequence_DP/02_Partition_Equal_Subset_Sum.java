@@ -76,11 +76,11 @@ class Solution {
         for(int i:nums) sum+=i;
         if(sum%2==1) return false;
 
-        Boolean[][] memDp = new Boolean[n][sum+1];
+        // Boolean[][] memDp = new Boolean[n][sum+1];
         boolean[][] tabDp = new boolean[n][sum+1];
 
         // return rec(n-1, sum/2, nums);
-        return mem(n-1, sum/2, nums, memDp);
-        // return tab(n-1, sum/2, nums, tabDp);
+        // return mem(n-1, sum/2, nums, memDp);
+        return tab(n-1, sum/2, nums, tabDp);
     }
 }
