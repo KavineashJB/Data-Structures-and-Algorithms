@@ -76,7 +76,7 @@ class Solution {
     
     static Boolean isSubsetSum(int arr[], int sum) {
         int n = arr.length;
-        Boolean[][] memDp = new Boolean[n][sum+1];
+        // Boolean[][] memDp = new Boolean[n][sum+1];
         boolean[][] tabDp = new boolean[n][sum+1];
         // return rec(n-1, sum, arr);
         // return mem(n-1, sum, arr, memDp);
