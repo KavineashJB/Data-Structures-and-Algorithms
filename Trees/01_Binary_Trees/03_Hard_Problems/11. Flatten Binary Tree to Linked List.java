@@ -84,17 +84,15 @@ class Solution_2 {
 class Solution_3 {
     public void flatten(TreeNode root) {
         while(root!=null){
-            if(root.left==null){
-                root=root.right;
-                continue;
+            
+            if(root!=null){
+                TreeNode prev = root.left;
+                while(prev.right!=null) prev=prev.right;
+                prev.right=root.right;
+                root.right=root.left;
+                root.left=null;
             }
-            TreeNode currRight = root.right;
-            TreeNode currLeft = root.left;
-            TreeNode prev = currLeft;
-            while(prev.right!=null) prev=prev.right;
-            prev.right=currRight;
-            root.right=currLeft;
-            root.left=null;
+            
             root=root.right;
         }
     }
