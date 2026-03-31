@@ -24,6 +24,9 @@
 // The number of the nodes in the tree will be in the range [1, 5000]
 // -200 <= Node.val <= 200
 
+
+// Intuition: ?? (post order serialization)
+
 import java.util.*;
 class TreeNode {
     int val;
