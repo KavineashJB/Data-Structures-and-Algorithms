@@ -34,7 +34,7 @@ class TreeNode {
         this.right = right;
     }
 }
-class Solution {
+class Solution_1 {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         Deque<TreeNode> q = new ArrayDeque<>();
         List<List<Integer>> res = new ArrayList<>();
@@ -62,5 +62,39 @@ class Solution {
             res.add(l);
         }
         return res;
+    }
+}
+
+class Solution_2 {
+    List<List<Integer>> res;
+    public List<List<Integer>> bfs(TreeNode root){
+        Queue<TreeNode> q = new LinkedList<>();
+
+        if(root==null) return res;
+        q.offer(root);
+        boolean lr=true;
+        while(!q.isEmpty()){
+            int size = q.size();
+            
+            List<Integer> l = new ArrayList<>();
+            for(int i=0; i<size; i++){
+                TreeNode curr=q.poll();
+                
+                if(lr) l.addLast(curr.val);
+                else l.addFirst(curr.val);
+
+                if(curr.left!=null) q.offer(curr.left);
+                if(curr.right!=null) q.offer(curr.right);
+            }
+            
+            lr=!lr;
+            res.add(l);
+        }
+        return res;
+    }
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        res = new ArrayList<>();
+        if(root==null) return res;
+        return bfs(root);
     }
 }
