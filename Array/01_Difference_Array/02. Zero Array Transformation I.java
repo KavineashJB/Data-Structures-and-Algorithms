@@ -41,6 +41,7 @@
 // queries[i].length == 2
 // 0 <= li <= ri < nums.length
 
+// Problem Link: https://leetcode.com/problems/zero-array-transformation-i/description/
 
 class Solution {
     // Overall TC: O(q+n+n) 
