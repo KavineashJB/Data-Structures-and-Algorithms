@@ -46,7 +46,7 @@
 
 import java.util.*;
 
-public class Solution {
+class Solution {
 
     public static int kDistinctChars(int k, String s) {
         int left = 0, maxi = 0, n = s.length();

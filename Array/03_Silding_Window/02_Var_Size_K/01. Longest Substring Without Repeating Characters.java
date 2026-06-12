@@ -25,6 +25,8 @@
 // s consists of English letters, digits, symbols and spaces.
 
 // Problem Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+import java.util.*;
+
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 

@@ -32,6 +32,8 @@
 // 0 <= fruits[i] < fruits.length
 
 // Problem Link: https://leetcode.com/problems/fruit-into-baskets/
+import java.util.*;
+
 class Solution {
     public int totalFruit(int[] fruits) {
         int left = 0, n = fruits.length, maxi = 0;

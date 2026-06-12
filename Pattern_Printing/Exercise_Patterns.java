@@ -195,6 +195,20 @@ public class Exercise_Patterns {
     }
 
     public static void pattern9(int n) {
+        // int val = 1;
+        int x = 1;
+        for (int i = 0; i < n; i++) {
+            int val = x;
+            for (int j = 2; j <= n - i + 1; j++) {
+                System.out.print(val + " ");
+                val += j + i;
+            }
+            x += i + 1;
+            System.out.println();
+        }
+    }
+
+    public static void pattern10(int n) {
         int val = 1;
         for (int i = 1; i <= 2 * n; i++) {
             int row = (i <= n) ? i : 2 * n - i + 1;
@@ -206,6 +220,20 @@ public class Exercise_Patterns {
             }
             if (i != n) {
                 val = (i <= n) ? val + i + 1 : val - row;
+            }
+            System.out.println();
+        }
+    }
+
+    public static void pattern11(int n) {
+        int prev2 = 0, prev1 = 1;
+        int temp;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(prev1 + " ");
+                temp = prev1 + prev2;
+                prev2 = prev1;
+                prev1 = temp;
             }
             System.out.println();
         }
@@ -239,6 +267,9 @@ public class Exercise_Patterns {
 
                 // pattern8(n);
                 pattern9(n);
+
+                // pattern10(n);
+                // pattern11(n);
 
                 System.out.println();
                 System.out.println(
