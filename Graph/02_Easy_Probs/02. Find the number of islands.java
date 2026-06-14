@@ -30,8 +30,36 @@
 // Auxiliary Space: O(n * m)
 
 // Problem Link: https://www.geeksforgeeks.org/problems/find-the-number-of-islands/1
+import java.util.*;
+class Solution1 {
+    public void dfs(int i, int j, boolean[][] vis, char[][] grid){
+        if(i<0 || j<0 || i >= grid.length || j >= grid[0].length || grid[i][j]=='W' || vis[i][j]) return;
+        vis[i][j]=true;
+        
+        int[][] dir={{-1,-1},{-1,0},{-1,1},{0,1},{1,1},{1,0},{1,-1},{0,-1}};
+        for(int n=0;n<8;n++){
+            dfs(i+dir[n][0], j+dir[n][1], vis, grid);
+        }
+    }
+    public int countIslands(char[][] grid) {
+        int n=grid.length;
+        int m=grid[0].length;
+        int cnt=0;
+        boolean vis[][]=new boolean[n][m];
+        
+        for(int i=n-1;i>=0;i--){
+            for(int j=m-1;j>=0;j--){
+                if(!vis[i][j] && grid[i][j]=='L'){
+                    dfs(i,j,vis,grid);
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+}
 
-class Solution {
+class Solution2 {
     public void bfs(int x, int y, boolean[][] vis, char[][] grid, Queue<int[]> q){
         q.offer(new int[]{x,y});
         vis[x][y]=true;

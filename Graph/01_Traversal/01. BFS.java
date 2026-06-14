@@ -37,7 +37,7 @@
 // Auxiliary Space: O(V + E)
 
 //  problem link: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
-
+import java.util.*;
 class Solution {
     // space-O(N)+O(N)+O(N) - queue,res,vis
     // Time - O(N)+O(2E) - visit each node, vis each neighbour[degree of nodes(Degree of graph=2*no.of edges ==> property)]

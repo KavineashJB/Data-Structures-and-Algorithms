@@ -29,8 +29,8 @@
 // isConnected[i][j] == isConnected[j][i]
 
 // Problem Link: https://leetcode.com/problems/number-of-provinces/description/
-
-class Solution {
+import java.util.*;
+class Solution1 {
     public void dfs(int node, boolean[] vis, ArrayList<ArrayList<Integer>> adj){
         vis[node]=true;
 
@@ -65,5 +65,32 @@ class Solution {
             }
         }
         return c;
+    }
+}
+
+// No need to create AdjList - but little tricky
+class Solution2 {
+    public void dfs(int node, boolean[] vis, int[][] isConnected){
+        vis[node]=true;
+        int n=isConnected[node-1].length;
+        
+        for(int i=0; i<n; i++){
+            if(!vis[i+1] && isConnected[node-1][i]==1){
+                dfs(i+1, vis, isConnected);
+            }
+        }
+    }
+    
+    public int findCircleNum(int[][] isConnected) {
+        int n=isConnected.length;
+        boolean vis[]=new boolean[n+1];
+        int cnt=0;
+        for(int i=1;i<=n;i++){
+            if(!vis[i]){
+                dfs(i, vis, isConnected);
+                cnt++;
+            }
+        }
+        return cnt;
     }
 }
