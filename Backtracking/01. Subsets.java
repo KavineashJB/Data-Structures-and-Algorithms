@@ -31,9 +31,20 @@ class Solution {
         }
         
     }
+    public void dfs(int i, int[] nums, List<Integer> list) {
+        if(i==nums.length){
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        list.add(nums[i]);
+        dfs(i+1, nums, list);
+        list.remove(list.size()-1);
+        dfs(i+1, nums, list);
+    }
     public List<List<Integer>> subsets(int[] nums) {
         res = new ArrayList<>();
-        helper(0, nums, new ArrayList<>());
+        // helper(0, nums, new ArrayList<>());
+        dfs(0, nums, new ArrayList<>());
         return res;
     }
 }
