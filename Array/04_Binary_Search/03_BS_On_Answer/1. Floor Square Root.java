@@ -37,4 +37,10 @@ class Solution {
         }
         return h;
     }
+    public static void main(String[] args) {
+        double n=4.0;
+        int d=(int)n;
+        double m=d;
+        System.out.println(m);
+    }
 }
