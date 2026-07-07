@@ -19,51 +19,54 @@
 // 1 <= m, n <= 100
 
 // Problem Link: https://leetcode.com/problems/unique-paths/
-// Solution 1:
-// import java.util.Arrays;
-// class Solution {
-
-//     Time Complexity - O(2^n)
-//     Space Complexity - O(n) -> stack for recursion
-//     public int rec(int i, int j, int m, int n) {
-//         if(j==n-1) return 1;
-//         if(i==m-1) return 1;
-//         int moveRight = rec(i, j+1, m, n);
-//         int moveDown = rec(i+1, j, m, n);
-//         return moveRight + moveDown;
-//     }
-
-//     Time Complexity - O(n)
-//     Space Complexity - O(n) -> stack for recursion, O(n) -> dp
-//     public int mem(int i, int j, int m, int n, int[][] dp) {
-//         if(j==n-1) return 1;
-//         if(i==m-1) return 1;
-//         if(dp[i][j]!=-1) return dp[i][j];
-//         int moveRight = mem(i, j+1, m, n, dp);
-//         int moveDown = mem(i+1, j, m, n, dp);
-//         return dp[i][j]=moveRight + moveDown;
-//     }
-
-//     Time Complexity - O(n)
-//     Space Complexity - O(n) -> dp
-//     public int uniquePaths(int m, int n) {
-//         // m -> no.of rows, n -> no.of cols
-//         int[][] dp = new int[m][n];
-//         for(int[] row: dp) {
-//             Arrays.fill(row, -1);
-//         } 
-//         // return rec(0, 0, m, n);
-//         return mem(0, 0, m, n, dp);
-
-//         // for recursion i used bottom up but we've to use top down (n-1 to 0) but the code rec and mem are right? but to follow the structure and pattern we need to do it in the top down for rec, mem and bottom up for tab
-//     }
-// }
-
-// Solution 2:
 
 import java.util.Arrays;
 
-class Solution {
+class Solution1 {
+    // Time Complexity - O(2^n)
+    // Space Complexity - O(n) -> stack for recursion
+    public int rec(int i, int j, int m, int n) {
+        if (j == n - 1)
+            return 1;
+        if (i == m - 1)
+            return 1;
+        int moveRight = rec(i, j + 1, m, n);
+        int moveDown = rec(i + 1, j, m, n);
+        return moveRight + moveDown;
+    }
+
+    // Time Complexity - O(n)
+    // Space Complexity - O(n) -> stack for recursion, O(n) -> dp
+    public int mem(int i, int j, int m, int n, int[][] dp) {
+        if (j == n - 1)
+            return 1;
+        if (i == m - 1)
+            return 1;
+        if (dp[i][j] != -1)
+            return dp[i][j];
+        int moveRight = mem(i, j + 1, m, n, dp);
+        int moveDown = mem(i + 1, j, m, n, dp);
+        return dp[i][j] = moveRight + moveDown;
+    }
+
+    // Time Complexity - O(n)
+    // Space Complexity - O(n) -> dp
+    public int uniquePaths(int m, int n) {
+        // m -> no.of rows, n -> no.of cols
+        int[][] dp = new int[m][n];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        // return rec(0, 0, m, n);
+        return mem(0, 0, m, n, dp);
+
+        // for recursion i used bottom up but we've to use top down (n-1 to 0) but the
+        // code rec and mem are right? but to follow the structure and pattern we need
+        // to do it in the top down for rec, mem and bottom up for tab
+    }
+}
+
+class Solution2 {
 
     // Time Complexity - O(2^n)
     // Space Complexity - O(n) -> stack for recursion

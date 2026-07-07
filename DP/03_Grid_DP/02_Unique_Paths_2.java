@@ -8,7 +8,6 @@
 
 // The testcases are generated so that the answer will be less than or equal to 2 * 109.
 
- 
 // Example 1:
 // Input: obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
 // Output: 2
@@ -20,11 +19,10 @@
 // Example 2:
 // Input: obstacleGrid = [[0,1],[0,0]]
 // Output: 1
- 
+
 // Example 3:
 // Input: obstacleGrid = [[0,1,0,0]]
 // Output: 0
- 
 
 // Constraints:
 
@@ -33,49 +31,57 @@
 // 1 <= m, n <= 100
 // obstacleGrid[i][j] is 0 or 1.
 
-// Solution:
+// Problem Link: https://leetcode.com/problems/unique-paths-ii/description/
 
 import java.util.Arrays;
+
 class Solution {
 
     // Time Complexity - O(2^n)
     // Space Complexity - O(n) -> stack for recursion
     public int rec(int i, int j, int[][] obstacleGrid) {
-        if(i==0 && j==0) return 1;
-        if(i<0 || j<0 || obstacleGrid[i][j] == 1) return 0;
-        int moveTop = rec(i-1, j, obstacleGrid);
-        int moveLeft = rec(i, j-1, obstacleGrid);
+        if (i == 0 && j == 0)
+            return 1;
+        if (i < 0 || j < 0 || obstacleGrid[i][j] == 1)
+            return 0;
+        int moveTop = rec(i - 1, j, obstacleGrid);
+        int moveLeft = rec(i, j - 1, obstacleGrid);
         return moveTop + moveLeft;
     }
 
     // Time Complexity - O(n)
     // Space Complexity - O(n) -> stack for recursion, O(n) -> dp
     public int mem(int i, int j, int[][] obstacleGrid, int[][] dp) {
-        if(i==0 && j==0) return 1;
-        if(i<0 || j<0 || obstacleGrid[i][j] == 1) return 0;
-        if(dp[i][j]!=-1) return dp[i][j];
-        int moveTop = mem(i-1, j, obstacleGrid, dp);
-        int moveLeft = mem(i, j-1, obstacleGrid, dp);
-        return dp[i][j]=moveTop + moveLeft;
+        if (i == 0 && j == 0)
+            return 1;
+        if (i < 0 || j < 0 || obstacleGrid[i][j] == 1)
+            return 0;
+        if (dp[i][j] != -1)
+            return dp[i][j];
+        int moveTop = mem(i - 1, j, obstacleGrid, dp);
+        int moveLeft = mem(i, j - 1, obstacleGrid, dp);
+        return dp[i][j] = moveTop + moveLeft;
     }
 
     // Time Complexity - O(n)
     // Space Complexity - O(n) -> dp
     public int tab(int i, int j, int[][] obstacleGrid, int[][] dp) {
         // (i==0 && j==0)
-        dp[0][0]=obstacleGrid[0][0]==1?0:1;
+        dp[0][0] = obstacleGrid[0][0] == 1 ? 0 : 1;
         // if(i<0 || j<0 || obstacleGrid[i][j] == 1)
-        for(int x=1; x<=i; x++) dp[x][0]=obstacleGrid[x][0]==1?0:dp[x-1][0];
-        for(int y=1; y<=j; y++) dp[0][y]=obstacleGrid[0][y]==1?0:dp[0][y-1];
+        for (int x = 1; x <= i; x++)
+            dp[x][0] = obstacleGrid[x][0] == 1 ? 0 : dp[x - 1][0];
+        for (int y = 1; y <= j; y++)
+            dp[0][y] = obstacleGrid[0][y] == 1 ? 0 : dp[0][y - 1];
 
-        for(int x=1; x<=i; x++) {
-            for(int y=1; y<=j; y++) {
-                if(obstacleGrid[x][y]==1) {
+        for (int x = 1; x <= i; x++) {
+            for (int y = 1; y <= j; y++) {
+                if (obstacleGrid[x][y] == 1) {
                     dp[x][y] = 0;
                 } else {
-                    int moveTop = dp[x-1][y];
-                    int moveLeft = dp[x][y-1];
-                    dp[x][y]=moveTop + moveLeft;
+                    int moveTop = dp[x - 1][y];
+                    int moveLeft = dp[x][y - 1];
+                    dp[x][y] = moveTop + moveLeft;
                 }
             }
         }
@@ -86,13 +92,14 @@ class Solution {
         // n -> no.of rows, m -> no.of cols
         int n = obstacleGrid.length;
         int m = obstacleGrid[0].length;
-        if(obstacleGrid[n-1][m-1]==1 || obstacleGrid[0][0]==1) return 0;
+        if (obstacleGrid[n - 1][m - 1] == 1 || obstacleGrid[0][0] == 1)
+            return 0;
         int[][] dp = new int[n][m];
-        for(int[] row: dp) {
+        for (int[] row : dp) {
             Arrays.fill(row, -1);
         }
         // return rec(n-1, m-1, obstacleGrid);
         // return mem(n-1, m-1, obstacleGrid, dp);
-        return tab(n-1, m-1, obstacleGrid, dp);
+        return tab(n - 1, m - 1, obstacleGrid, dp);
     }
 }
